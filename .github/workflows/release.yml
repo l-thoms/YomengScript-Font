@@ -1,0 +1,33 @@
+name: Release
+
+on:
+  push:
+    tags: 
+    - 'v*'
+
+jobs:
+  push-release:
+    runs-on: ubuntu-latest
+    env: 
+      BUILD_NO_PROGRESS: "1"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      
+      - name: Install Fontforge
+        run: sudo apt install -y fontforge
+      
+      - name: Build
+        run: fontforge -script ./build.py
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          draft: false
+          prerelease: ${{ startsWith(github.ref_name, 'v0.') }}
+          files: |
+            ./output/YomengScript.otf
+            ./output/YomengScript.ttf
+            ./output/YomengScript.ufo.zip
+            ./src/YomengScript.sfd
