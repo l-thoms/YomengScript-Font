@@ -65,7 +65,7 @@ def process(name):
     font.close()
 
 if __name__ == '__main__':
-    entries = os.scandir(os.path.join(os.getcwd(), "sfd"))
+    entries = os.scandir(os.path.join(os.getcwd(), "src"))
     for e in entries:
         if e.is_file() and e.name.endswith(".sfd"):
             process(e.path)
