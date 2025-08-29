@@ -4,7 +4,7 @@ if not os.path.split(sys.executable)[1].lower().startswith("fontforge"):
     subprocess.call(["fontforge", "-script", __file__])
     sys.exit()
 
-import fontforge, zipfile, shutil, asyncio, time, datetime
+import fontforge, zipfile, shutil, datetime
 
 def process(name):
     print(f"Selected font: {name}")
@@ -24,7 +24,7 @@ def process(name):
     if os.path.exists(ufoPath):
         shutil.rmtree(ufoPath)
 
-    font.generate(ufoPath)
+    font.generate(ufoPath, flags=("opentype"))
 
     print("Packing UFO...")
     ufoZip = zipfile.ZipFile(ufoZipPath, "w", compression=zipfile.ZIP_LZMA)
