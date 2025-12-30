@@ -60,7 +60,7 @@ def process(name):
     font.generate(ttfPath, flags=("opentype", "round", "dummy-dsig"))
 
     print("Generating OTF...")
-    font.generate(otfPath, flags=("opentype", "round", "no-flex", "no-hints", "dummy-dsig"))
+    font.generate(otfPath, flags=("opentype", "round", "no-flex", "dummy-dsig"))
 
     font.close()
 
